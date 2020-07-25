@@ -1,0 +1,13 @@
+FROM openjdk:15-slim
+ARG ACTIVEMQ_VERSION=5.16.0
+
+ADD https://downloads.apache.org//activemq/$ACTIVEMQ_VERSION/apache-activemq-$A>
+RUN tar -zxvf apache-activemq-$ACTIVEMQ_VERSION-bin.tar.gz &&\
+    mv /apache-activemq-$ACTIVEMQ_VERSION /activemq && \
+    rm apache-activemq-$ACTIVEMQ_VERSION-bin.tar.gz && \
+    sed -i 's/127.0.0.1/0.0.0.0/g' /activemq/conf/jetty.xml
+
+EXPOSE 61616
+EXPOSE 8161
+
+ENTRYPOINT ["/activemq/bin/activemq", "console"]
