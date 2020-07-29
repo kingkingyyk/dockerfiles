@@ -1,7 +1,7 @@
 FROM openjdk:15-slim
 ARG ACTIVEMQ_VERSION=5.16.0
 
-ADD https://downloads.apache.org//activemq/$ACTIVEMQ_VERSION/apache-activemq-$A>
+ADD https://downloads.apache.org/activemq/$ACTIVEMQ_VERSION/apache-activemq-$ACTIVEMQ_VERSION-bin.tar.gz /
 RUN tar -zxvf apache-activemq-$ACTIVEMQ_VERSION-bin.tar.gz &&\
     mv /apache-activemq-$ACTIVEMQ_VERSION /activemq && \
     rm apache-activemq-$ACTIVEMQ_VERSION-bin.tar.gz && \
