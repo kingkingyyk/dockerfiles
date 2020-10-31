@@ -17,4 +17,4 @@ RUN curl https://sonatype-download.global.ssl.fastly.net/repository/downloads-pr
     
 WORKDIR nexus/bin
 
-ENTRYPOINT ['./nexus', 'run']
+ENTRYPOINT ["./nexus", "run"]
