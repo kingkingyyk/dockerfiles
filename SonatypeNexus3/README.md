@@ -26,6 +26,7 @@ version: "3.8"
 services:
   nexus3:
     image: nexus3-pi:latest
+    container_name: nexus3
     volumes:
       - /path/to/work:/sonatype-work
     ports:

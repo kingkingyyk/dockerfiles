@@ -1,4 +1,4 @@
-FROM docker pull balenalib/raspberry-pi-openjdk
+FROM balenalib/raspberry-pi-openjdk:8-stretch
 
 ENV NEXUS_VERSION=3.28.1-01
 
