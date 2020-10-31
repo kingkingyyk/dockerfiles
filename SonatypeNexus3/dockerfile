@@ -1,0 +1,18 @@
+FROM docker pull balenalib/raspberry-pi-openjdk
+
+ENV NEXUS_VERSION=3.28.1-01
+
+RUN curl https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-$NEXUS_VERSION-unix.tar.gz -o build.tar.gz &&\
+    tar -zvxf build.tar.gz && \
+    rm build.tar.gz && \
+    mv nexus-$NEXUS_VERSION nexus &&\
+    rm -Rf sonatype-work &&\
+    cd /nexus/lib/endorsed &&\
+    curl https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.6.0/jna-5.6.0.jar -o jna-5.6.0.jar &&\
+    curl https://repo1.maven.org/maven2/net/java/dev/jna/jna-platform/5.6.0/jna-platform-5.6.0.jar -o jna-platform-5.6.0.jar &&\ 
+    cd /nexus &&\
+    sed -i 's/-Xms2703m/-Xms384m/g' bin/nexus.vmoptions &&\
+    sed -i 's/-Xmx2703m/-Xmx384m/g' bin/nexus.vmoptions &&\
+    sed -i 's/-XX:MaxDirectMemorySize=2703m/-XX:MaxDirectMemorySize=384m/g' bin/nexus.vmoptions
+
+CMD ['/nexus/bin/nexus', 'run']
