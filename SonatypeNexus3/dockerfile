@@ -15,4 +15,4 @@ RUN curl https://sonatype-download.global.ssl.fastly.net/repository/downloads-pr
     sed -i 's/-Xmx2703m/-Xmx384m/g' bin/nexus.vmoptions &&\
     sed -i 's/-XX:MaxDirectMemorySize=2703m/-XX:MaxDirectMemorySize=384m/g' bin/nexus.vmoptions
 
-CMD ['/nexus/bin/nexus', 'run']
+ENTRYPOINT ['/nexus/bin/nexus', 'run']
